@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Apply to be a donor</title>
+</head>
+<body>
+
+{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+		<ul class=flashes>
+		{% for message in messages %}
+		  <h1>{{ message }}</h1>
+		{% endfor %}
+		</ul>
+	  {% endif %}
+	{% endwith %}
+
+<form action="/applydonor" method="POST">
+
+<label>Do you want to be a donor?</label>
+        <input type="radio" name="ans" value="yes"> Yes
+        <input type="radio" name="ans" value="no"> No
+    </br>
+     <input type="submit" value = Accept />
+</form>
+
+<a href="/home">Go back</a>
+
+</body>
+</html>

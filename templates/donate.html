@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Donate an item</title>
+</head>
+<body>
+
+{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+		<ul class=flashes>
+		{% for message in messages %}
+		  <h1>{{ message }}</h1>
+		{% endfor %}
+		</ul>
+	  {% endif %}
+	{% endwith %}
+
+<form action="/donate" method="POST">
+	<input type="text" name = "item_description" placeholder="Description for your item" required/> </br>
+	<input type="text" name = "photo" placeholder="Photo(url or sth)" required/></br>
+	<input type="text" name = "color" placeholder="color" required/> </br>
+	<label>Is it new?</label>
+        <input type="radio" name="isnew" value="yes"> Yes
+        <input type="radio" name="isnew" value="no"> No
+    </br>
+	<label>Does it have pieces?</label>
+        <input type="radio" name="haspiece" value="yes">Yes
+        <input type="radio" name="haspiece" value="no">No
+    </br>
+	<input type="text" name = "material" placeholder="Material" required/> </br>
+    <input type="text" name = "main_category" placeholder="Main Category" required/> </br>
+    <input type="text" name = "sub_category" placeholder="Sub Category" required/> </br>
+    <input type="text" name = "cat_note" placeholder="Notes for your category" required/> </br>
+	<input type="submit" value = Donate />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+
+
+<a href="/home">Go back</a>
+</body>
+</html>

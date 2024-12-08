@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Accept a donation</title>
+</head>
+<body>
+
+{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+		<ul class=flashes>
+		{% for message in messages %}
+		  <h1>{{ message }}</h1>
+		{% endfor %}
+		</ul>
+	  {% endif %}
+	{% endwith %}
+
+<form action="/accept" method="POST">
+       <table>
+   <tr>
+       <th></th>
+    <th>Item ID</th>
+    <th>Donor</th>
+    <th>Donation Date</th>
+
+  </tr>
+    {% for option in pending %}
+	<tr>
+        <td><input type="radio" name="pending" value="{{ option.ItemID }}" ></td>
+        <td>{{ option.ItemID }}</td>
+        <td>{{ option.userName }}</td>
+        <td> {{ option.donateDate }}</td>
+	</tr>
+
+    {% endfor %}
+       </table>
+
+    <input type="submit" value = Accept />
+</form>
+
+<a href="/home">Go back</a>
+</body>
+</html>

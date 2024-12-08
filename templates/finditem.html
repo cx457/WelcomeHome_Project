@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find an item</title>
+</head>
+<body>
+{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+		<ul class=flashes>
+		{% for message in messages %}
+		  <h1>{{ message }}</h1>
+		{% endfor %}
+		</ul>
+	  {% endif %}
+	{% endwith %}
+
+<form action="/finditem" method="POST">
+
+    <input type="text" name = "itemID" placeholder="Please enter an item ID" required/> </br>
+    <input type="submit" value = Find />
+
+  {% if search == True %}
+<table>
+   <tr>
+    <th>Item ID</th>
+    <th>Description</th>
+    <th>Photo</th>
+      <th>Color</th>
+    <th>Is New</th>
+    <th>has Pieces</th><th>material</th>
+    <th>Main Category</th>
+    <th>Sub Category</th>
+  </tr>
+    {% for line in item %}
+	<tr>
+		<td>{{line.ItemID}}</td>
+		<td>{{line.iDescription}}</td>
+        <td>{{line.photo}}</td>
+		<td>{{line.color}}</td>
+        <td>{% if line.isNew == 1 %} Yes
+            {% elif line.isNew == 0 %} No
+            {% endif %}
+        </td>
+		 <td>{% if line.hasPieces == 1 %} Yes
+            {% elif line.hasPieces == 0 %} No
+            {% endif %}
+        </td>
+        <td>{{line.material}}</td>
+		<td>{{line.mainCategory}}</td>
+        <td>{{line.subCategory}}</td>
+	</tr>
+{% endfor %}
+
+</table>
+
+    <table>
+   <tr>
+    <th>Item ID</th>
+    <th>Piece No.</th>
+    <th>Description</th>
+      <th>Room No.</th>
+    <th>Shelf No.</th>
+       <th>Piece Notes</th>
+  </tr>
+    {% for line in locations %}
+	<tr>
+		<td>{{line.ItemID}}</td>
+		<td>{{line.pieceNum}}</td>
+        <td>{{line.pDescription}}</td>
+		<td>{{line.shelfNum}}</td>
+        <td>{{line.roomNum}}</td>
+           <td>{{line.pNotes}}</td>
+	</tr>
+{% endfor %}
+
+</table>
+{% endif %}
+</form>
+
+
+<a href="/home">Go back</a>
+</body>
+</html>

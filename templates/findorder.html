@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find an order</title>
+</head>
+<body>
+
+{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+		<ul class=flashes>
+		{% for message in messages %}
+		  <h1>{{ message }}</h1>
+		{% endfor %}
+		</ul>
+	  {% endif %}
+	{% endwith %}
+
+<form action="/findorder" method="POST">
+
+    <input type="text" name = "orderID" placeholder="Please enter an order ID" required/> </br>
+    <input type="submit" value = Find />
+
+  {% if search == True %}
+
+   <table>
+   <tr>
+    <th>Item ID</th>
+    <th>Piece Name</th>
+    <th>Main Category</th>
+      <th>Sub Category</th>
+    <th>room No.</th>
+    <th>shelf No.</th>
+  </tr>
+    {% for line in order %}
+	<tr>
+		<td>{{line.itemID}}</td>
+		<td>{{line.PieceName}}</td>
+        <td>{{line.mainCategory}}</td>
+		<td>{{line.subCategory}}</td>
+        <td>{{line.roomNum}}</td>
+		<td>{{line.shelfNum}}</td>
+
+	</tr>
+{% endfor %}
+
+</table>
+
+
+</table>
+{% endif %}
+</form>
+
+<a href="/home">Go back</a>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<html>
+<head>
+</head>
+<body>
+<form action="/registerAuth" method="POST">
+	<input type="text" name = "username" placeholder="username" required/> </br>
+	<input type="password" name = "password" placeholder="password" required/></br>
+	<input type="text" name = "first_name" placeholder="first name" required/> </br>
+	<input type="text" name = "last_name" placeholder="last name" required/> </br>
+	<input type="text" name = "email" placeholder="Email" required/> </br>
+	<input type="text" name = "role" placeholder="Role" required/> (We only have 1 for staff, 2 for volunteer, 3 for client and 4 for donor right now</br>
+	<input type="submit" value = Register />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+
+<a href="/">Go back</a>
+
+</body>
+
+
+</html>

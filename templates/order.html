@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Start an order</title>
+</head>
+<body>
+
+{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+		<ul class=flashes>
+		{% for message in messages %}
+		  <h1>{{ message }}</h1>
+		{% endfor %}
+		</ul>
+	  {% endif %}
+	{% endwith %}
+
+<form action="/order" method="POST">
+    <input type="text" name = "username" placeholder="Please enter an username" required/> </br>
+      <input type="text" name = "order_note" placeholder="Please enter any note for the order" required/> </br>
+	<input type="submit" value = 'Start an order' />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+
+<a href="/home">Go back</a>
+
+
+</body>
+</html>

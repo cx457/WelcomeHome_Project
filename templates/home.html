@@ -1,0 +1,54 @@
+<html>
+<head>
+</head>
+<body>
+
+{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+		<ul class=flashes>
+		{% for message in messages %}
+		  <h1>{{ message }}</h1>
+		{% endfor %}
+		</ul>
+	  {% endif %}
+	{% endwith %}
+
+<form action="/post" method="POST">
+	<h1>Welcome {{username}}</h1>
+</form>
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+
+<a href="/finditem">Find an item</a>
+<br>
+<a href="/findorder">Find an order</a>
+<br>
+{% if staff == True %}
+<a href="/accept">Accept donation</a>
+<br>
+<a href="/order">Start an order</a>
+<br>
+<a href="/category">Add item to the current order</a>
+{% endif %}
+<br>
+{% if donor == True %}
+<a href="/donate">Donate an item</a>
+{% endif %}
+<br>
+
+{% if donor == False %}
+<a href="/applydonor">Apply to be a donor</a>
+{% endif %}
+<br>
+
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>
